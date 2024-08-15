@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="App.Controls.Buttons.Full"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <toolkit:IsNotNullConverter x:Key="IsNotNullConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <stateButton:StateButton Padding="15,19"
+                                     AutomationProperties.IsInAccessibleTree="True"
+                                     Clicked="StateButton_Clicked"
+                                     StrokeThickness="0">
+                <stateButton:StateButton.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0.1" Color="{DynamicResource TealFadeEnd}" />
+                        <GradientStop Offset="1.0" Color="{DynamicResource TealFadeStart}" />
+                    </LinearGradientBrush>
+                </stateButton:StateButton.Background>
+                <stateButton:StateButton.Triggers>
+                    <Trigger TargetType="stateButton:StateButton" Property="State" Value="Pressed">
+                        <Setter Property="Background">
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Offset="0.1" Color="{DynamicResource TealFadeEndHover}" />
+                                <GradientStop Offset="1.0" Color="{DynamicResource TealFadeStartHover}" />
+                            </LinearGradientBrush>
+                        </Setter>
+                    </Trigger>
+                </stateButton:StateButton.Triggers>
+                <stateButton:StateButton.Content>
+                    <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
+                        <Label Grid.Column="0"
+                               FontFamily="FontAwesomeLight"
+                               FontSize="{TemplateBinding IconStartFontSize}"
+                               Text="{TemplateBinding IconStart}"
+                               TextColor="{DynamicResource TextButtonColour}"
+                               VerticalTextAlignment="Center">
+                            <Label.Triggers>
+                                <DataTrigger Binding="{TemplateBinding IconStart,
+                                                                       Converter={StaticResource IsNotNullConverter}}"
+                                             TargetType="Label"
+                                             Value="false">
+                                    <Setter Property="IsVisible" Value="false" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label Grid.Column="1"
+                               FontFamily="InterRegular"
+                               LineBreakMode="WordWrap"
+                               Text="{TemplateBinding Text}"
+                               TextColor="{DynamicResource TextButtonColour}"
+                               VerticalTextAlignment="Center" />
+                        <Label Grid.Column="2"
+                               Margin="20,0,0,0"
+                               FontFamily="FontAwesomeLight"
+                               FontSize="{TemplateBinding IconStartFontSize}"
+                               Text="{TemplateBinding Icon}"
+                               TextColor="{DynamicResource TextButtonColour}"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </stateButton:StateButton.Content>
+            </stateButton:StateButton>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>  

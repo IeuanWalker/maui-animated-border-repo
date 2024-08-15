@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="App.Routes.InputRepoPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:inputs="clr-namespace:App.Controls.Inputs"
+             xmlns:resx="clr-namespace:App.Resources.Languages"
+             Title="Input repo"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColour}">
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="10"
+          RowDefinitions="auto,auto,auto,auto">
+        <!-- Like to be contacted switch -->
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Margin="{StaticResource FormMarginsAllRound}"
+              ColumnDefinitions="*,85">
+            <Label Grid.Column="0"
+                   HorizontalOptions="StartAndExpand"
+                   Style="{DynamicResource TextBody}"
+                   Text="{x:Static resx:AppResources.LblLikedToBeContacted}"
+                   VerticalOptions="Center" />
+            <inputs:Switch x:Name="ContactedToggle"
+                           Grid.Column="1"
+                           HorizontalOptions="End" />
+        </Grid>
+
+
+        <!-- First name -->
+        <inputs:Entry Grid.Row="1"
+                      Grid.Column="0"
+                      Margin="{StaticResource FormMarginsLeft}"
+                      IsVisible="{Binding Source={x:Reference ContactedToggle}, Path=IsToggled}"
+                      Placeholder="{x:Static resx:AppResources.LblFirstName}" />
+        <!-- Last name -->
+        <inputs:Entry Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="{StaticResource FormMarginsRight}"
+                      IsVisible="{Binding Source={x:Reference ContactedToggle}, Path=IsToggled}"
+                      Placeholder="{x:Static resx:AppResources.LblLastName}" />
+
+        <!-- Email -->
+        <inputs:Entry Grid.Row="2"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="{StaticResource FormMargins}"
+                      IsVisible="{Binding Source={x:Reference ContactedToggle}, Path=IsToggled}"
+                      Keyboard="Email"
+                      Placeholder="{x:Static resx:AppResources.LblEmailAddress}" />
+        <!-- Contact number -->
+        <inputs:Entry Grid.Row="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="{StaticResource FormMargins}"
+                      IsVisible="{Binding Source={x:Reference ContactedToggle}, Path=IsToggled}"
+                      Keyboard="Numeric"
+                      Placeholder="{x:Static resx:AppResources.LblContactNumber}" />
+    </Grid>
+</ContentPage>

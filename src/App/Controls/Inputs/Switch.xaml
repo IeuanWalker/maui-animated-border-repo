@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<switch:CustomSwitch x:Class="App.Controls.Inputs.Switch"
+                     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:switch="clr-namespace:IeuanWalker.Maui.Switch;assembly=IeuanWalker.Maui.Switch"
+                     HeightRequest="30"
+                     HorizontalKnobMargin="1"
+                     KnobBackgroundColor="White"
+                     KnobHeight="26"
+                     KnobLimit="Boundary"
+                     KnobWidth="26"
+                     WidthRequest="50">
+    <switch:CustomSwitch.Triggers>
+        <Trigger TargetType="switch:CustomSwitch" Property="IsEnabled" Value="False">
+            <Setter Property="Opacity" Value="0.6" />
+        </Trigger>
+    </switch:CustomSwitch.Triggers>
+    <switch:CustomSwitch.StrokeShape>
+        <RoundRectangle CornerRadius="15" />
+    </switch:CustomSwitch.StrokeShape>
+    <switch:CustomSwitch.KnobStrokeShape>
+        <RoundRectangle CornerRadius="13" />
+    </switch:CustomSwitch.KnobStrokeShape>
+    <switch:CustomSwitch.IsBusyContent>
+        <ActivityIndicator HeightRequest="30"
+                           IsRunning="True"
+                           WidthRequest="30"
+                           Color="Black" />
+    </switch:CustomSwitch.IsBusyContent>
+</switch:CustomSwitch>

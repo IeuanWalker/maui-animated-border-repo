@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="App.Routes.HomePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:App.Controls.Buttons;assembly=App"
+             Title="Home"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+             HideSoftInputOnTapped="True"
+             NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout Padding="20"
+                         Spacing="20"
+                         VerticalOptions="Center">
+        <buttons:CallOut Clicked="BtnInputRepo_Clicked" Text="Input repo" />
+        <buttons:CallOut Clicked="BtnButtonRepo_Clicked" Text="Button repo" />
+    </VerticalStackLayout>
+</ContentPage>

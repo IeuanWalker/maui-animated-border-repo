@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView x:Class="App.Controls.Inputs.Entry"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="this">
+    <ContentView.Content>
+        <Grid RowDefinitions="auto,auto,auto" RowSpacing="5">
+            <!-- IMPORTANT: This label is always invisibe. It occupies the space ready for when the placeholder animation. Without this the layout will jump around to resize. -->
+            <Label Grid.Row="0"
+                   AutomationProperties.IsInAccessibleTree="False"
+                   FontFamily="InterRegular"
+                   FontSize="Small"
+                   Text="{Binding Placeholder, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                   TextColor="{DynamicResource PrimaryBackgroundColour}" />
+            <Label x:Name="HiddenLabel"
+                   Grid.Row="0"
+                   AutomationProperties.IsInAccessibleTree="True"
+                   FontFamily="InterRegular"
+                   FontSize="Small"
+                   IsVisible="False"
+                   Text="{Binding Placeholder, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                   TextColor="{DynamicResource TextPrimaryColour}"
+                   TranslationY="75" />
+            <Border x:Name="EntryFrame"
+                    Grid.Row="1"
+                    BackgroundColor="{DynamicResource InputFieldColour}"
+                    Stroke="{DynamicResource UnfocusedColour}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Border.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="7,15" />
+                        <On Platform="Android" Value="7,3" />
+                    </OnPlatform>
+                </Border.Padding>
+                <Entry x:Name="EntryField"
+                       AutomationProperties.IsInAccessibleTree="True"
+                       BackgroundColor="Transparent"
+                       Completed="Handle_Completed"
+                       Focused="Handle_Focused"
+                       IsPassword="{Binding IsPassword, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       IsSpellCheckEnabled="True"
+                       IsTextPredictionEnabled="True"
+                       Keyboard="{Binding Keyboard, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       MaxLength="{Binding MaxLength, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       Placeholder="{Binding Placeholder, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       PlaceholderColor="{DynamicResource TextSilverColour}"
+                       ReturnType="{Binding ReturnType, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       Text="{Binding Text, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       TextChanged="EntryField_TextChanged"
+                       TextColor="{DynamicResource TextPrimaryColour}"
+                       TextTransform="{Binding TextTransform, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                       Unfocused="Handle_Unfocused" />
+            </Border>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
